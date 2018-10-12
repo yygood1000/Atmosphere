@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--星球控件自定义属性-->
+    <declare-styleable name="AtmosphereView">
+        <!--是否绘制大气层-->
+        <attr name="palnet_is_show_atmosphere" format="boolean" />
+        <!--是否绘制轨道-->
+        <attr name="planet_is_show_orbit" format="boolean" />
+        <!--主题颜色-->
+        <attr name="planet_color" format="integer">
+            <enum name="planet_color_gray" value="-1" />
+            <enum name="planet_color_green" value="0" />
+            <enum name="planet_color_blue" value="1" />
+            <enum name="planet_color_purple" value="2" />
+            <enum name="planet_color_red" value="3" />
+            <enum name="planet_color_orange" value="4" />
+            <enum name="planet_color_yellow" value="5" />
+        </attr>
+    </declare-styleable>
+
+</resources>
