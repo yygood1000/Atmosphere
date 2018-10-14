@@ -221,4 +221,68 @@ public class AtmosphereView extends View {
         float sDensity = metrics.density;
         return (dipVlue * sDensity + 0.5F);
     }
+
+    // 调整行为
+    public enum ResizingBehavior {
+        AspectFit, //!< The content is proportionally resized to fit into the targetFrame rectangle.
+        AspectFill, //!< The content is proportionally resized to completely fill the targetFrame rectangle.
+        Stretch, //!< The content is stretched to match the entire targetFrame rectangle.
+        Center, //!< The content is centered in the targetFrame rectangle, but it is NOT resized.
+    }
+
+    /**
+     * TODO 调整行为,代码解析
+     *
+     * @param behavior      调整行为
+     * @param originalFrame 原始帧 ：new RectF(0f, 0f, 256f, 256f)
+     * @param targetFrame   目标帧
+     * @param resizedFrame  变更后的尺寸
+     *                      示例：
+     *                      canvas.save();
+     *                      RectF resizedFrame =  new RectF();
+     *                      Atmosphere.resizingBehaviorApply(resizing, new RectF(0f, 0f, 256f, 256f), targetFrame, resizedFrame);
+     *                      canvas.translate(resizedFrame.left, resizedFrame.top);
+     *                      canvas.scale(resizedFrame.width() / 256f, resizedFrame.height() / 256f);
+     */
+    public static void resizingBehaviorApply(ResizingBehavior behavior, RectF originalFrame, RectF targetFrame, RectF resizedFrame) {
+        if (originalFrame.equals(targetFrame) || targetFrame == null) {
+            resizedFrame.set(originalFrame);
+            return;
+        }
+
+        // 内容被拉伸以匹配整个目标矩形。
+        if (behavior == ResizingBehavior.Stretch) {
+            resizedFrame.set(targetFrame);
+            return;
+        }
+
+        float xRatio = Math.abs(targetFrame.width() / originalFrame.width());
+        float yRatio = Math.abs(targetFrame.height() / originalFrame.height());
+        float scale = 0f;
+
+        switch (behavior) {
+            // 内容按比例调整以适应目标矩形。
+            case AspectFit: {
+                scale = Math.min(xRatio, yRatio);
+                break;
+            }
+            // 内容按比例调整，以完全填充目标矩形。
+            case AspectFill: {
+                scale = Math.max(xRatio, yRatio);
+                break;
+            }
+            // 内容以目标矩形为中心，但它没有调整。
+            case Center: {
+                scale = 1f;
+                break;
+            }
+        }
+
+        float newWidth = Math.abs(originalFrame.width() * scale);
+        float newHeight = Math.abs(originalFrame.height() * scale);
+        resizedFrame.set(0,
+                0,
+                targetFrame.centerX() + newWidth / 2,
+                targetFrame.centerY() + newHeight / 2);
+    }
 }
