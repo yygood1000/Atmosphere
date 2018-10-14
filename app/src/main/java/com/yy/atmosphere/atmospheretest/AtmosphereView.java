@@ -3,13 +3,10 @@ package com.yy.atmosphere.atmospheretest;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
-import android.graphics.PointF;
 import android.graphics.RectF;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
-
-import com.yy.atmosphere.atmospheretest.Moons;
 
 import android.view.View;
 
@@ -107,7 +104,7 @@ public class AtmosphereView extends View {
     }
 
     /**
-     * 缩小星球，大气层，表情的实际绘制尺寸
+     * 缩控件的实际绘制尺寸
      */
     private void shrinkSizeVal() {
         float ratio = mViewWidth / mPlanetDefaultVal;
@@ -138,41 +135,41 @@ public class AtmosphereView extends View {
             case COLOR_INDEX_GRAY:
                 Moons.drawSmallPlanetsGray(canvas, mAtmosphereRectF);
                 Orbit.drawOrbitGray(canvas, mAtmosphereRectF);
-                Atmosphere.drawCloudsGray(canvas, mAtmosphereRectF);
+                Clouds.drawCloudsGray(canvas, mAtmosphereRectF);
                 break;
             case COLOR_INDEX_GREEN:
                 Moons.drawSmallPlanetsGreen(canvas, mAtmosphereRectF);
                 Orbit.drawOrbitGreen(canvas, mAtmosphereRectF);
-                Atmosphere.drawCloudsGreen(canvas, mAtmosphereRectF, Atmosphere.ResizingBehavior.AspectFit);
-//                    Atmosphere.drawCloudsGreen(canvas, mAtmosphereRectF, Atmosphere
-//                            .ResizingBehavior.Stretch, new RectF(-88f, -37f, 168f, 219f));
+                Clouds.drawCloudsGreen(canvas, mAtmosphereRectF);
+//                Atmosphere.drawCloudsGreen(canvas, new RectF(-88f, -37f, 168f, 219f), Atmosphere.ResizingBehavior.AspectFit);
+//                    Atmosphere.drawCloudsGreen(canvas, mAtmosphereRectF, Atmosphere.ResizingBehavior.Stretch, new RectF(-88f, -37f, 168f, 219f));
                 break;
             case COLOR_INDEX_BLUE:
                 Moons.drawSmallPlanetsBlue(canvas, mAtmosphereRectF);
                 Orbit.drawOrbitBlue(canvas, mAtmosphereRectF);
-                Atmosphere.drawCloudsBlue(canvas, mAtmosphereRectF);
+                Clouds.drawCloudsBlue(canvas, mAtmosphereRectF);
                 break;
             case COLOR_INDEX_PURPLE:
                 Moons.drawSmallPlanetsPurple(canvas, mAtmosphereRectF);
                 Orbit.drawOrbitPurple(canvas, mAtmosphereRectF);
-                Atmosphere.drawCloudsPurple(canvas, mAtmosphereRectF);
+                Clouds.drawCloudsPurple(canvas, mAtmosphereRectF);
                 break;
             case COLOR_INDEX_RED:
                 Moons.drawSmallPlanetsRed(canvas, mAtmosphereRectF);
                 Orbit.drawOrbitRed(canvas, mAtmosphereRectF);
-                Atmosphere.drawCloudsRed(canvas, mAtmosphereRectF);
+                Clouds.drawCloudsRed(canvas, mAtmosphereRectF);
                 break;
             case COLOR_INDEX_ORANGE:
                 Moons.drawSmallPlanetsOrange(canvas, mAtmosphereRectF);
                 Orbit.drawOrbitOrange(canvas, mAtmosphereRectF);
-                Atmosphere.drawCloudsOrange(canvas, mAtmosphereRectF);
+                Clouds.drawCloudsOrange(canvas, mAtmosphereRectF);
 //                    Atmosphere.drawCloudsOrange(canvas, mAtmosphereRectF, Atmosphere
 //                            .ResizingBehavior.Stretch, new RectF(-88f, -37f, 168f, 219f));
                 break;
             case COLOR_INDEX_YELLOW:
                 Moons.drawSmallPlanetsYellow(canvas, mAtmosphereRectF);
                 Orbit.drawOrbitYellow(canvas, mAtmosphereRectF);
-                Atmosphere.drawCloudsYellow(canvas, mAtmosphereRectF);
+                Clouds.drawCloudsYellow(canvas, mAtmosphereRectF);
                 break;
         }
     }
